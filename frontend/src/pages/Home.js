@@ -4,6 +4,7 @@ import naruto from "../images/naruto.png"
 import plus from "../images/plus.png"
 import minus from "../images/minus.png"
 import styled from "styled-components";
+import axios from "axios";
 
 const ButtonStart = styled.a`
 position: absolute;
@@ -29,13 +30,27 @@ color: #FFAA15;
 const minute = 60
 class Home extends React.Component{
   constructor(props) {
+
      super(props);
      this.state = {
        leftTime : 20 * minute,
-       running : false
+       running : false,
+       users: []
      }
 
+    }
+  componentDidMount() {
+    this.refreshList();
   }
+
+  refreshList = () => {
+    axios
+      .get("/api/user/")
+      .then((res) => this.setState({ users: res.data }))
+      .catch((err) => console.log(err));
+  };
+
+
 
   imageClick = () => {
     console.log('Click!!!!');
@@ -79,14 +94,20 @@ startStop= () =>{
        <img className="naruto" src={naruto} alt>
        </img>
        <ButtonStart  onClick={this.startStop} primary>{this.state.running? "Stop" : "Start"}</ButtonStart>
-       
+
        <img className="minus" onClick={this.substractTime} src={minus} />
         {this.afisFrumos()}
-       </div>
-      
-      
+          
         
+
       
+      { // this was a test
+      this.state.users.forEach(user => {
+        console.log(user.email)
+      })
+      }
+       </div>    
+
       )
   }
 }
