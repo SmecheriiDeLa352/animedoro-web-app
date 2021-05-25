@@ -91,13 +91,14 @@ startStop= () =>{
   render() {
       return (<div className="MainPage">      
        <img className="plus" onClick={this.addTime} src={plus} />
-       <img className="naruto" src={naruto} alt>
+       <img className="naruto" src={naruto} alt> 
+              
        </img>
+     <div className="timmer">{this.afisFrumos()}</div>
+    
        <ButtonStart  onClick={this.startStop} primary>{this.state.running? "Stop" : "Start"}</ButtonStart>
-
+      
        <img className="minus" onClick={this.substractTime} src={minus} />
-        {this.afisFrumos()}
-          
         
 
       
