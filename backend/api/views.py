@@ -4,8 +4,15 @@ from .models import User, UserPreferences, StreamingService
 from .serializers import UserSerializer, StreamingServicesSerializer, UserPreferencesSerializer
 
 class UserView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+    def get_queryset(self):
+        queryset = User.objects.all()
+        username = self.request.query_params.get('username')
+        password = self.request.query_params.get('password')
+        if username and password:
+            queryset = queryset.filter(username=username, password=password)
+        return queryset
 
 
 class StreamingServicesView(generics.ListCreateAPIView):
