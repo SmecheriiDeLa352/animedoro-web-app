@@ -11,10 +11,10 @@ export default function Login() {
 
   const { register, handleSubmit } = useForm()
   const [successfulLogin, setSuccessfulLogin] = useState(false)
-  const closePopup = () => setUnsuccessfulLogin(false)
+  const closePopup = () => setSuccessfulLogin(false)
 
   const onSubmit = data => {
-    await axios
+    axios
     .get("api/user?" + querystring.stringify({
       "username": data.username,
       "password": data.password
@@ -30,11 +30,6 @@ export default function Login() {
     .catch((err) => {
       console.log(err)
     })
-  }
-
-  if (successfulLogin === true) {
-    return <Redirect to="/home"/>
-    
   }
 
   return (
