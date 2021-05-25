@@ -53,6 +53,7 @@ class App extends React.Component{
             <Nav className="mr-auto">
           <Nav.Link onClick={() => this.setState({pagina_curenta: 'home'})}>Home</Nav.Link>
           <Nav.Link onClick={() => this.setState({pagina_curenta: 'login'})}>Login</Nav.Link>
+         
           {/* <Nav.Link onClick={() => this.setState({pagina_curenta: 'cronometru'})}>Cronometru</Nav.Link> */}
         </Nav>
           </Navbar.Collapse>
