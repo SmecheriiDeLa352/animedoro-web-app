@@ -32,7 +32,13 @@
   color: white !important;
 }
 
-
+.timmer {
+  position: absolute;
+    top: 240px;
+    font-size: 200px;
+    color: white;
+    left: 480px;
+}
 .navbar .navbar-expand .navbar-light{
   justify-content: center;
   background-color: #C3E2B6;
