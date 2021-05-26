@@ -6,7 +6,7 @@ from .models import User, StreamingService, UserPreferences, Calendar
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('user_id', 'username', 'password', 'email', 'f_name', 'l_name')
+        fields = ('user_id', 'username', 'password', 'email', 'f_name', 'l_name', 'calendar_id')
 
 class StreamingServicesSerializer(serializers.ModelSerializer):
     class Meta:
