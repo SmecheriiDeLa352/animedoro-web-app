@@ -6,6 +6,7 @@ import {Navbar, Nav, NavDropdown, Button} from 'react-bootstrap'
 import Home from './pages/Home';
 import Cronometru from './pages/Cronometru';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 class App extends React.Component{
   constructor(props) {
@@ -74,7 +75,7 @@ onLogout(user){
         </div>
       </div>
       <div className="Cronometru">
-        {paginaRandata}
+        <SignUp />
       </div>
 
       </div>
