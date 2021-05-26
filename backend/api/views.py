@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import User, UserPreferences, StreamingService
-from .serializers import UserSerializer, StreamingServicesSerializer, UserPreferencesSerializer
+from .models import User, UserPreferences, StreamingService, Calendar
+from .serializers import UserSerializer, StreamingServicesSerializer, UserPreferencesSerializer, CalendarSerializer
 
 class UserView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
@@ -23,3 +23,6 @@ class UserPreferencesView(generics.ListCreateAPIView):
     queryset = UserPreferences.objects.all()
     serializer_class = UserPreferencesSerializer
 
+class CalendarView(generics.ListCreateAPIView):
+    queryset = Calendar.objects.all()
+    serializer_class = CalendarSerializer

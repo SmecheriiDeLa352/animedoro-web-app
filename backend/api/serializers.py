@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from .models import User, StreamingService, UserPreferences
+from .models import User, StreamingService, UserPreferences, Calendar
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,3 +17,9 @@ class UserPreferencesSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserPreferences
         fields = ('stream_id', 'user_id')
+
+class CalendarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calendar
+        fields = ('calendar_id', 'hours_worked_monday', 'hours_worked_tuesday', 'hours_worked_wednesday'
+        , 'hours_worked_thursday', 'hours_worked_friday', 'hours_worked_saturday', 'hours_worked_sunday')
