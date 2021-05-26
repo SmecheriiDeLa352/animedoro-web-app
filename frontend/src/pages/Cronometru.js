@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Navbar, Nav, NavDropdown, Button} from 'react-bootstrap'
 import naruto from "../images/naruto.png"
 import plus from "../images/plus.png"
+import HBOgo from "../images/HBOgo.png"
+import netflix from "../images/netflix.png"
+import  buton33 from "../images/buton3.png"
 import minus from "../images/minus.png"
 import styled from "styled-components";
 import axios from "axios";
@@ -27,6 +30,7 @@ line-height: 70px;
 color: #FFAA15;
 
 `
+
 const minute = 60
 class Cronometru extends React.Component{
   constructor(props) {
@@ -35,7 +39,8 @@ class Cronometru extends React.Component{
     this.state = {
       leftTime : 20 * minute,
       running : false,
-      users: []
+      users: [],
+      timeOver : false
     }
 
    }
@@ -75,7 +80,14 @@ if ( this.state.running === false){
     this.setState({
       leftTime : this.state.leftTime - 1 
     })
+  if (this.state.leftTime === 0 ){
+      this.setState({
+        timeOver : true
+      })
+      this.startStop()
+    }
   }, 1000);
+ 
 }
 else {
   this.setState({
@@ -87,6 +99,19 @@ else {
 
 
   render() {
+    let buttonStart= (  <ButtonStart  onClick={this.startStop} primary>{this.state.running? "Stop" : "Start"}</ButtonStart> );
+    let butonNetflix=null;
+    let butonHBOgo=null;
+   
+   let  buton3= null;
+    if(this.state.timeOver === true){    
+     butonNetflix = (<img className="netflix" src={netflix} to="https://www.netflix.com/browse" />);
+     butonHBOgo= (<a href ="https://hbogo.ro/"><img className="HBOgo" src={HBOgo} /> </a>);
+     buton3= (<a href ="https://www.crunchyroll.com/"><img className="buton3" src={buton33}  /> </a>);
+      buttonStart = null;
+    }
+ 
+
     return (<div className="MainPage">    
     <div>Hi,{ this.props.user}</div>  
     <img className="plus" onClick={this.addTime} src={plus} />
@@ -95,8 +120,11 @@ else {
     </img>
   <div className="timmer">{this.afisFrumos()}</div>
    
-    <ButtonStart  onClick={this.startStop} primary>{this.state.running? "Stop" : "Start"}</ButtonStart>
-   
+    
+  {buttonStart}
+  {butonNetflix}
+  {butonHBOgo}
+  {buton3}
     <img className="minus" onClick={this.substractTime} src={minus} />
    
     

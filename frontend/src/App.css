@@ -45,7 +45,24 @@
  
 
 }
-
+.buton3{
+  width: 100px;
+    position: absolute;
+    top: 550px;
+    left: 850px;
+}
+.HBOgo{
+  width: 200px;
+    position: absolute;
+    top: 570px;
+    left: 500px;
+}
+.netflix{
+  width: 100px;
+    position: absolute;
+    top: 550px;
+    left: 700px;
+}
 
 .navbar  .navbar-brand{
 
