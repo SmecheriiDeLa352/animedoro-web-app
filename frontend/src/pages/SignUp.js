@@ -21,11 +21,12 @@ export default function SignUp(props) {
     }).catch((err) => {
         console.error(err)
     })
+    props.onLoginSucces(data.username)
   }
 
   return (
     <div>
-      <h1>Log in</h1>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label> 
           First Name:

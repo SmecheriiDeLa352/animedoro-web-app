@@ -49,11 +49,18 @@ onLogout(user){
     if (this.state.pagina_curenta === 'cronometru') {
       paginaRandata = (<Cronometru user = {this.state.user}/>);
     }
+    if (this.state.pagina_curenta === 'signUp') {
+      paginaRandata = (<SignUp onLoginSucces={(user) => this.onLoginSucces(user) }/>);
+    }
 
 
     let butonLogout= (<Nav.Link onClick={() => this.setState({pagina_curenta: 'login'})}>Login</Nav.Link>);
     if(this.state.logat === true){
       butonLogout= (<Nav.Link onClick={() => this.onLogout()}>Logout</Nav.Link>);
+    }
+    let butonSignup= (<Nav.Link onClick={() => this.setState({pagina_curenta: 'signUp'})}>signUp</Nav.Link>);
+    if(this.state.logat === true){
+      butonSignup= null
     }
 
     return (
@@ -68,6 +75,7 @@ onLogout(user){
             <Nav className="mr-auto">
           <Nav.Link onClick={() => this.setState({pagina_curenta: 'home'})}>Home</Nav.Link>
          {butonLogout}
+         {butonSignup}
          
         </Nav>
           </Navbar.Collapse>
@@ -75,7 +83,7 @@ onLogout(user){
         </div>
       </div>
       <div className="Cronometru">
-        <SignUp />
+        {paginaRandata}
       </div>
 
       </div>
