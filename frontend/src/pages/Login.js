@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup';
 import { Redirect } from 'react-router-dom';
 
 
-export default function Login() {
+export default function Login(props) {
 
   const { register, handleSubmit } = useForm()
   const [successfulLogin, setSuccessfulLogin] = useState(false)
@@ -21,7 +21,11 @@ export default function Login() {
     }))
     .then(response => {
       if (response.data.length > 0) {
-        console.log("Succesful Login")
+        console.log("Succesful Login") 
+
+       props.onLoginSucces(data.username)
+
+
         setSuccessfulLogin(true)
         localStorage.setItem("username", data.username)
         localStorage.setItem("password", data.password)

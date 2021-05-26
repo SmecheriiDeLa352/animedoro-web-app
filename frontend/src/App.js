@@ -16,29 +16,43 @@ class App extends React.Component{
         - home
         - register
         - cronometru
-
-
         // dupa login cu succes, this.setState({pagina_curenta: 'cronometru' })
     */
     super(props);
     this.state = {
       pagina_curenta: 'home',
       plus: false,
-      minus: false
+      minus: false,
+      logat : false
     }
 
     // setTimeout(() => this.setState({pagina_curenta: 'cronometru' }), 5000)
 
   }
-
+onLoginSucces(user){
+  this.setState({pagina_curenta:'cronometru',
+  user,logat :true
+})
+}
+onLogout(user){
+  this.setState({pagina_curenta:'login',
+  user,logat :false
+})
+}
   render(){
 
     let paginaRandata = (<Home/>);
     if (this.state.pagina_curenta === 'login') {
-      paginaRandata = (<Login trimisVariabilaPrinParametru={'variabila trimisa ca paramentru'}/>);
+      paginaRandata = (<Login onLoginSucces={(user) => this.onLoginSucces(user) }/>);
     }
     if (this.state.pagina_curenta === 'cronometru') {
-      paginaRandata = (<Cronometru/>);
+      paginaRandata = (<Cronometru user = {this.state.user}/>);
+    }
+
+
+    let butonLogout= (<Nav.Link onClick={() => this.setState({pagina_curenta: 'login'})}>Login</Nav.Link>);
+    if(this.state.logat === true){
+      butonLogout= (<Nav.Link onClick={() => this.onLogout()}>Logout</Nav.Link>);
     }
 
     return (
@@ -52,9 +66,8 @@ class App extends React.Component{
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
           <Nav.Link onClick={() => this.setState({pagina_curenta: 'home'})}>Home</Nav.Link>
-          <Nav.Link onClick={() => this.setState({pagina_curenta: 'login'})}>Login</Nav.Link>
+         {butonLogout}
          
-          {/* <Nav.Link onClick={() => this.setState({pagina_curenta: 'cronometru'})}>Cronometru</Nav.Link> */}
         </Nav>
           </Navbar.Collapse>
         </Navbar>
